@@ -1,0 +1,25 @@
+name: Supply Release Artifacts
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install NASM
+        run: sudo apt install -y nasm
+
+      - name: Assemble
+        run: make
+
+      - name: Upload
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/yousuck
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
