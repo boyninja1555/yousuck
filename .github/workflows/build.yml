@@ -4,8 +4,11 @@ on:
   release:
     types: [published]
 
+permissions:
+  contents: write
+
 jobs:
-  build-and-upload:
+  supply:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
