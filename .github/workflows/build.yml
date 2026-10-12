@@ -20,9 +20,12 @@ jobs:
       - name: Assemble
         run: make
 
+      - name: TAR
+        run: tar -czvf build/yousuck-x86_64-linux.tar.gz build/yousuck
+
       - name: Upload
         uses: softprops/action-gh-release@v2
         with:
-          files: build/yousuck
+          files: build/yousuck-x86_64-linux.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
